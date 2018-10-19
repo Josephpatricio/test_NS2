@@ -16,7 +16,13 @@ public class Cliente {
     private String cpf;
 
     public Cliente(){
+    }
 
+    public Cliente(String id, String nome, String email, String cpf) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
     }
 
     public String getId() {

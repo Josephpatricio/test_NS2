@@ -22,8 +22,8 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Cliente listarPorId(String id) {
-        return this.clienteRepository.findOne(id);
+    public Optional<Cliente> listarPorId(String id) {
+        return this.clienteRepository.findById(id);
     }
 
     @Override
@@ -38,6 +38,6 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public void remover(String id) {
-        this.clienteRepository.delete(id);
+        this.clienteRepository.deleteById(id);
     }
 }

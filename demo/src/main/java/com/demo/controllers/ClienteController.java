@@ -3,10 +3,18 @@ package com.demo.controllers;
 import com.demo.documents.Cliente;
 import com.demo.responses.Response;
 import com.demo.services.ClienteService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -14,12 +22,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/clientes")
-
-
-public class ClientController {
+public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
+
 
     @GetMapping
     public ResponseEntity<Response<List<Cliente>>> listarTodos() {
@@ -27,8 +34,8 @@ public class ClientController {
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Response<Cliente>> listarPorId(@PathVariable(name = "id") String id) {
-        return ResponseEntity.ok(new Response<Cliente>(this.clienteService.listarPorId(id)));
+    public ResponseEntity<?> listarPorId(@PathVariable(name = "id") String id) {
+        return ResponseEntity.ok(this.clienteService.listarPorId(id));
     }
 
     @PostMapping
@@ -59,4 +66,5 @@ public class ClientController {
         this.clienteService.remover(id);
         return ResponseEntity.ok(new Response<Integer>(1));
     }
+
 }
